@@ -20,6 +20,7 @@
 
     <div class="builder">
         <div class="container">
+            <form action="generate.php" method="POST" enctype="multipart/form-data">
             <h1>Build Your Brochure</h1>
             <p class="page-sub">choose you template and fill in your details and get your brochure ready to print.</p>
 
@@ -46,22 +47,7 @@
                     <span class="model-preview box-2">Model 2</span>
                     <span>Model 2 — Modern</span>
                 </label>
-                <label class="model-option">
-                    <input type="radio" name="model" value="model3">
-                    <span class="model-preview box-3">Model 3</span>
-                    <span>Model 3 — Modern</span>
-                </label>
-                <label class="model-option">
-                    <input type="radio" name="model" value="model4">
-                    <span class="model-preview box-4">Model 4</span>
-                    <span>Model 4 — Modern</span>
-                </label>
-                <label class="model-option">
-                    <input type="radio" name="model" value="model5">
-                    <span class="model-preview box-5">Model 5</span>
-                    <span>Model 5 — Modern</span>
-                </label>
-
+              
                 <!-- TODO: Add more model options here -->
             </div>
 
@@ -77,17 +63,17 @@
 
                 <div class="field">
                     <label for="name">Enter your Full Name *</label>
-                    <input type="text" id="name" name="name" placeholder="e.g. The Alchemist">
+                    <input type="text" id="name" name="full_name" placeholder="e.g. The Alchemist">
                 </div>
 
                 <div class="field">
                     <label for="company">Enter your Company Name</label>
-                    <input type="text" id="company" name="company" placeholder="e.g. casaimmo LTD">
+                    <input type="text" id="company" name="company_name" placeholder="e.g. casaimmo LTD">
                 </div>
 
                 <div class="field">
                     <label for="tagline">Enter your Slogan</label>
-                    <input type="text" id="tagline" name="slogan" placeholder="e.g. Building the future">
+                    <input type="text" id="tagline" name="tagline" placeholder="e.g. Building the future">
                 </div>
 
                 <div class="row">
@@ -99,29 +85,40 @@
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="phone" placeholder="+237657576445">
                     </div>
-                    </div>
+                    <div class="field">
+                        <label for="phone">address:</label>
+                        <input type="tel" id="address" name="address" placeholder="Biyem-assi">
+                        </div>
+                        </div>
                     <div class="field">
                         <label for="about">About Your Company</label>
-                         <textarea id="about" name="about" rows="4" 
+                         <textarea style="font-size: 20px;" id="about" name="about" rows="10" cols="50"
                          placeholder="e.g. We are a company that..."></textarea>
                    </div>
 
+                   <div class="field">
+    <label for="why">Why Choose Us</label>
+    <textarea style="font-size: 20px;" id="why" name="why_choose_us" rows="10" cols="50"
+    placeholder="e.g. We are the best because..."></textarea>
+</div>
+
                   <div class="field">
-                     <label for="services">Your Services</label>
-                     <textarea id="services" name="services" rows="4" 
-                       placeholder="e.g. Service 1, Service 2, Service 3..."></textarea>
-                   </div>
+    <label for="service1">Service 1</label>
+    <input type="text" id="service1" name="service_1" placeholder="e.g. House Rental">
+</div>
+
+<div class="field">
+    <label for="service2">Service 2</label>
+    <input type="text" id="service2" name="service_2" placeholder="e.g. Property Sales">
+</div>
+
+<div class="field">
+    <label for="service3">Service 3</label>
+    <input type="text" id="service3" name="service_3" placeholder="e.g. Property Management">
+</div>
                 </div>
             </div>
 
-            <!--
-            ==========================================
-            STEP 3 — Choose colours
-            ==========================================
-            The PRIMARY colour preview already works.
-            The SECONDARY colour preview is broken —
-            your job is to make it work. Check script.js.
-            -->
 
             <div class="form-section">
                 <h2>The third step: Choose your colours</h2>
@@ -129,27 +126,18 @@
                 <div class="row">
                     <div class="field">
                         <label for="primary-color">Your main color</label>
-                        <input type="color" id="primary-color" value="#3B82F6">
+                        <input type="color" id="primary-color" name="primary_color" value="#3B82F6">
                         <div class="swatch" id="primary-swatch"></div>
                     </div>
                     <div class="field">
                         <label for="secondary-color">Your secondary color</label>
-                        <input type="color" id="secondary-color" value="#1E3A5F">
-                        <!-- TODO: The swatch below doesn't update yet.
-                             Fix it by adding an event listener in script.js -->
+                        <input type="color" id="secondary-color" name="secondary_color" value="#1E3A5F">
                         <div class="swatch" id="secondary-swatch"></div>
                     </div>
                 </div>
             </div>
 
-            <!--
-            ==========================================
-            STEP 4 — Upload logo
-            ==========================================
-            TODO: When you add PHP, use enctype="multipart/form-data"
-            and handle the file with $_FILES.
-            -->
-
+          
             <div class="form-section">
                 <h2>Step 4: Upload Your Logo</h2>
                 <div class="field">
@@ -160,22 +148,10 @@
                 </div>
             </div>
 
-            <!--
-            ==========================================
-            SUBMIT
-            ==========================================
-            When this becomes PHP, change the button to
-            <button type="submit"> and wrap everything
-            inside <form action="generate.php" method="POST"
-            enctype="multipart/form-data">
-            -->
-
             <div class="form-section action-row">
-                <a href="#" class="btn" onclick="alert('[This form is not connected yet. After you set up PHP, make it submit to generate.php.]'); return false;">
-                    Generate My Brochure
-                </a>
+                <button type="submit" class="btn">Generate My Brochure</button>
             </div>
-
+        </form>
         </div>
     </div>
 

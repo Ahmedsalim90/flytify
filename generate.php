@@ -1,111 +1,61 @@
-/**
- * HINT FILE — Flytify Brochure Generator
- *
- * This file does NOT run. It's a collection of hints and code
- * snippets for when you're ready to build generate.php.
- *
- * HOW TO USE:
- *   1. Create a file called generate.php in this folder
- *   2. Copy the snippets below into it
- *   3. Fill in the [...blank...] parts
- *   4. Connect it to test.html by wrapping the form fields
- *      in <form action="generate.php" method="POST" enctype="multipart/form-data">
- *
- * NEED HELP? Check the README.md for the full tutorial.
- */
+<?php
 
-// ─────────────────────────────────────────────
-// 1. CHECK IF FORM WAS SUBMITTED
-// ─────────────────────────────────────────────
-// HTML forms using method="POST" send data that
-// PHP reads from $_POST and $_FILES.
+// Load .env file
+$envFile = __DIR__ . '/.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos($line, '#') === 0) continue;
+        if (strpos($line, '=') !== false) {
+            list($key, $value) = explode('=', $line, 2);
+            putenv(trim($key) . '=' . trim($value));
+        }
+    }
+}
 
-/*
+// 1. Check form was submitted
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: test.html');
     exit;
 }
-*/
 
-// ─────────────────────────────────────────────
-// 2. READ FORM DATA
-// ─────────────────────────────────────────────
-// Each input in test.html with a name="..." attribute
-// becomes available as $_POST['...'].
+// 2. Read form data
+$fullName       = $_POST['full_name'] ?? '';
+$companyName    = $_POST['company_name'] ?? '';
+$tagline        = $_POST['tagline'] ?? '';
+$email          = $_POST['email'] ?? '';
+$phone          = $_POST['phone'] ?? '';
+$address        = $_POST['address'] ?? '';
+$about          = $_POST['about'] ?? '';
+$services       = $_POST['services'] ?? '';
+$model          = $_POST['model'] ?? 'model1';
+$primaryColor   = $_POST['primary_color'] ?? '#10B981';
+$secondaryColor = $_POST['secondary_color'] ?? '#064E3B';
+$service1 = $_POST['service_1'] ?? '';
+$service2 = $_POST['service_2'] ?? '';
+$service3 = $_POST['service_3'] ?? '';
+$whyChooseUs = $_POST['why_choose_us'] ?? '';
 
-/*
-$fullName    = $_POST['full_name'] ?? '';
-$companyName = $_POST['company_name'] ?? '';
-$tagline     = $_POST['tagline'] ?? '';
-$email       = $_POST['email'] ?? '';
-$phone       = $_POST['phone'] ?? '';
-$model       = $_POST['model'] ?? 'model1';
-$primaryColor   = $_POST['primary_color'] ?? '#3B82F6';
-$secondaryColor = $_POST['secondary_color'] ?? '#1E3A5F';
-*/
+// 3. Connect to database
+require 'config/database.php';
 
-// TODO: Add the extra fields you created in test.html
-
-// ─────────────────────────────────────────────
-// 3. CONNECT TO THE DATABASE
-// ─────────────────────────────────────────────
-// See config/schema.sql first to understand the database.
-// Then use PDO to connect. Ask your mentor about
-// "prepared statements" — they prevent SQL injection.
-
-/*
-$host = getenv('DB_HOST') ?: 'localhost';
-$db   = getenv('DB_NAME');
-$user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASS') ?: '';
-
-try {
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$db;charset=utf8mb4",
-        $user,
-        $pass
-    );
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die('Database connection failed: ' . $e->getMessage());
-}
-*/
-
-// ─────────────────────────────────────────────
-// 4. SAVE TO DATABASE
-// ─────────────────────────────────────────────
-// Use a prepared statement with ? placeholders.
-// This is the SAFE way to insert user data.
-
-/*
-$sql = "INSERT INTO submissions (full_name, company_name, tagline, ...)
-        VALUES (?, ?, ?, ...)";
-
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$fullName, $companyName, $tagline, ...]);
-*/
-
-// ─────────────────────────────────────────────
-// 5. HANDLE FILE UPLOAD
-// ─────────────────────────────────────────────
-// Files arrive in $_FILES['logo']. Move them to
-// the uploads/ folder with a unique name.
-
-/*
+// 4. Handle logo upload
+$logoPath = '';
 if (isset($_FILES['logo']) && $_FILES['logo']['error'] === 0) {
-    $ext  = pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION);
-    $name = 'logo_' . time() . '.' . $ext;
-    move_uploaded_file($_FILES['logo']['tmp_name'], 'uploads/' . $name);
+    $ext      = pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION);
+    $filename = 'logo_' . time() . '.' . $ext;
+    move_uploaded_file($_FILES['logo']['tmp_name'], 'uploads/' . $filename);
+    $logoPath = 'uploads/' . $filename;
 }
-*/
 
-// ─────────────────────────────────────────────
-// 6. RENDER THE BROCHURE
-// ─────────────────────────────────────────────
-// Load the selected template from models/ and
-// replace {{PLACEHOLDERS}} with the user's data.
+// 5. Save to database
+$sql  = "INSERT INTO submissions 
+        (full_name, company_name, tagline, email, phone, address, about, services, primary_color, secondary_color, model, logo_path)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$fullName, $companyName, $tagline, $email, $phone, $address, $about, $services, $primaryColor, $secondaryColor, $model, $logoPath]);
 
-/*
+// 6. Load and render template
 $template = file_get_contents('models/' . $model . '.html');
 
 $replacements = [
@@ -114,8 +64,16 @@ $replacements = [
     '{{TAGLINE}}'         => $tagline,
     '{{EMAIL}}'           => $email,
     '{{PHONE}}'           => $phone,
+    '{{ADDRESS}}'         => $address,
+    '{{ABOUT}}'           => $about,
+    '{{SERVICES}}'        => $services,
     '{{PRIMARY_COLOR}}'   => $primaryColor,
     '{{SECONDARY_COLOR}}' => $secondaryColor,
+    '{{LOGO_PATH}}'       => $logoPath,
+    '{{SERVICE_1}}' => $service1,
+    '{{SERVICE_2}}' => $service2,
+    '{{SERVICE_3}}' => $service3,
+    '{{WHY_CHOOSE_US}}' => $whyChooseUs,
 ];
 
 $output = str_replace(
@@ -125,4 +83,3 @@ $output = str_replace(
 );
 
 echo $output;
-*/
