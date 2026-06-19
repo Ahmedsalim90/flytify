@@ -28,7 +28,7 @@ img {
 }
 
 a {
-    color: #3B82F6;
+    color: #10B981;
     text-decoration: none;
 }
 
@@ -61,7 +61,7 @@ a:hover {
 .logo {
     font-size: 22px;
     font-weight: bold;
-    color: #3B82F6;
+    color: #10B981;
 }
 
 .nav {
@@ -79,7 +79,7 @@ a:hover {
 
 .btn, .btn-small {
     display: inline-block;
-    background: #3B82F6;
+    background: #10B981;
     color: #ffffff;
     padding: 12px 28px;
     border-radius: 6px;
@@ -149,7 +149,7 @@ a:hover {
 .step-num {
     width: 45px;
     height: 45px;
-    background: #3B82F6;
+    background: #10B981;
     color: #ffffff;
     font-size: 20px;
     font-weight: bold;
@@ -198,11 +198,11 @@ a:hover {
 }
 
 .box-1 {
-    background: #3B82F6;
+    background: #10B981;
 }
 
 .box-2 {
-    background: #1E3A5F;
+    background: #064E3B;
 }
 
 .template-card h3 {
@@ -243,7 +243,7 @@ a:hover {
 .form-section h2 {
     font-size: 18px;
     margin-bottom: 15px;
-    color: #3B82F6;
+    color: #10B981;
 }
 
 .field {
@@ -320,7 +320,7 @@ a:hover {
 }
 
 .model-option input[type="radio"]:checked + .model-preview {
-    outline: 3px solid #3B82F6;
+    outline: 3px solid #10B981;
     outline-offset: 2px;
 }
 
@@ -354,7 +354,7 @@ a:hover {
 }
 
 .footer a {
-    color: #3B82F6;
+    color: #10B981;
 }
 
 /* ─── Mobile ────────────────────────────── */

@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Model 1 — Your Design Name]</title>
+    <title>Model 1 — Classic</title>
     <style>
         /*
          * TODO: Replace this entire stylesheet with your own.
@@ -76,9 +76,9 @@
         }
 
         .logo-area img {
-            max-height: 80px;
+            max-height: 100px;
             /* EDIT: Adjust logo sizing */
-            max-width: 200px;
+            max-width: 250px;
         }
 
         /* ─── CONTENT ─────────────────────────────────── */
@@ -96,6 +96,7 @@
 
         .brochure-content p {
             margin-bottom: 15px;
+            font-size: 12px;
             /* TODO: Adjust font sizes and spacing */
         }
 
@@ -163,22 +164,14 @@
 
         <div class="brochure-content">
 
-            <h2>[About Us]</h2>
-            <p><!-- TODO: Replace with your company description -->
-                [Write a paragraph about your company here. What do you do?
-                What makes you different? Why should customers choose you?]
+            <h2>About Us</h2>
+            <p><!-- TODO: Replace with your company description---->
+                {{ABOUT}}
             </p>
 
-            <h2>[Our Services]</h2>
-            <p><!-- TODO: List your services -->
-                [Service 1: Description of your first service or product.]
-            </p>
-            <p>
-                [Service 2: Description of your second service or product.]
-            </p>
-            <p>
-                [Service 3: Description of your third service or product.]
-            </p>
+            <h2>Our Services</h2>
+            <p>{{SERVICES}}</p>
+             
 
             <!-- TODO: Add more sections: Testimonials, Team, Portfolio, etc. -->
 
@@ -189,13 +182,14 @@
         <!-- ════════════════════════════════════════════ -->
 
         <div class="contact-info">
-            <h2>[Contact Us]</h2>
+            <h2>Contact Us</h2>
 
             <!-- TODO: Rearrange contact fields. Add/remove as needed. -->
-            <p><strong>[Name:]</strong> {{FULL_NAME}}</p>
-            <p><strong>[Company:]</strong> {{COMPANY_NAME}}</p>
-            <p><strong>[Email:]</strong> {{EMAIL}}</p>
-            <p><strong>[Phone:]</strong> {{PHONE}}</p>
+            <p><strong>Name:</strong> {{FULL_NAME}}</p>
+            <p><strong>Company:</strong> {{COMPANY_NAME}}</p>
+            <p><strong>Email:</strong> {{EMAIL}}</p>
+            <p><strong>Phone:</strong> {{PHONE}}</p>
+            <p><strong>Address:</strong> {{ADDRESS}}</p>
 
             <!-- TODO: Add more contact fields -->
             <!--
@@ -210,8 +204,8 @@
 
         <div class="brochure-footer">
             <!-- TODO: Update the footer text -->
-            <p>&copy; [Year] {{COMPANY_NAME}}. [All rights reserved.]</p>
-            <p>[Tagline or motto]</p>
+            <p>&copy; 2026 {{COMPANY_NAME}}. All rights reserved.</p>
+            <p>Design your story.</p>
         </div>
 
     </div>
