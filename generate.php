@@ -35,6 +35,9 @@ $service1 = $_POST['service_1'] ?? '';
 $service2 = $_POST['service_2'] ?? '';
 $service3 = $_POST['service_3'] ?? '';
 $whyChooseUs = $_POST['why_choose_us'] ?? '';
+$whyChooseUs1 = $_POST['why_choose_us_1'] ?? '';
+$whyChooseUs2 = $_POST['why_choose_us_2'] ?? '';
+$whyChooseUs3 = $_POST['why_choose_us_3'] ?? '';
 
 // 3. Connect to database
 require 'config/database.php';
@@ -74,6 +77,9 @@ $replacements = [
     '{{SERVICE_2}}' => $service2,
     '{{SERVICE_3}}' => $service3,
     '{{WHY_CHOOSE_US}}' => $whyChooseUs,
+    '{{WHY_CHOOSE_US_1}}' => $whyChooseUs1,
+    '{{WHY_CHOOSE_US_2}}' => $whyChooseUs2,
+    '{{WHY_CHOOSE_US_3}}' => $whyChooseUs3,
 ];
 
 $output = str_replace(

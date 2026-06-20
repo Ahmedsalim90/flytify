@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>model3_ holdup designe</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ffffff;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .banner {
+            width: 600px;
+            height: 1230px;
+          overflow: hidden;        /* hides anything that goes outside */
+           position: relative;      /* needed later for absolute children */
+          background: #ffffff;
+          font-family: 'Montserrat', sans-serif;
+          border: 2px solid black;
+          color: {{PRIMARY_COLOR}};
+}
+
+.logo-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+}
+.logo-area img {
+            max-height: 100px;
+            
+            max-width: 250px;
+        }
+.banner-header {
+    text-align: center;
+    background-color:{{PRIMARY_COLOR}};
+    color: white;
+    height: 150px;
+    box-shadow: 0 0 30px {{SECONDARY_COLOR}};
+}
+.services-header{
+    text-align: center;
+    text-decoration: underline;
+}
+.tagline{
+    text-decoration: underline 5px;
+}
+ul{
+    margin: 20px;
+    padding: 20px;
+}
+.serv{
+    display: flex;
+    flex-direction: column;
+    line-height: 3;
+    color: {{PRIMARY_COLOR}};
+}
+.why{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+    color: {{PRIMARY_COLOR}};
+}
+.r1{
+       background-color: {{SECONDARY_COLOR}};
+}
+.choose1{
+    border-right: 2px solid {{PRIMARY_COLOR}} ;
+}
+.choose2{
+    border-right: 2px solid  {{PRIMARY_COLOR}} ;
+}
+
+.contact-strip{
+    text-align: center;
+    color: #ffffff;
+    background-color: {{PRIMARY_COLOR}};
+
+}
+footer{
+    text-align: center;
+    background-color: {{SECONDARY_COLOR}};
+    color: {{PRIMARY_COLOR}};
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+       <div class="logo-area">
+            <img src="{{LOGO_PATH}}" alt="{{COMPANY_NAME}} logo">
+        </div>
+
+        <div class="banner-header">
+            <h1>{{COMPANY_NAME}}</h1>
+            <p class="tagline">{{TAGLINE}}</p>
+        </div>
+
+        <div class="services">
+            <div class="services-header">
+            <h1>Our Services</h1>
+            
+            </div>
+            <div class="serv">
+            <ul>
+                <li>{{SERVICE_1}}</li>
+            <hr>
+                <li>{{SERVICE_2}}</li>
+            <hr>
+                <li>{{SERVICE_3}}</li>
+                <hr>
+            </ul>
+            </div>
+        </div>
+
+        <div class="r1">
+            <h1 style="text-decoration: underline 2px; color: {{PRIMARY_COLOR}}; text-align: center; margin-bottom: 30px;">WHY CHOOSE US?</h1>
+            
+<div class="why">
+            <div class="choose1">
+                <p>
+                    {{WHY_CHOOSE_US}}
+                </p>
+            </div>
+            <div class="choose2">
+                <p>
+                    {{WHY_CHOOSE_US}}
+                </p>
+            </div>
+            <div class="choose3">
+                <p>
+                    {{WHY_CHOOSE_US}}
+                </p>
+            </div>
+        </div>
+        </div>
+
+        <div class="contact-strip">
+            <h1 style="text-decoration: underline;">GET IN TOUCH</h1>
+            <p><strong>Name:</strong> {{FULL_NAME}}</p>
+            <p><strong>Company:</strong> {{COMPANY_NAME}}</p>
+            <p><strong>Email:</strong> {{EMAIL}}</p>
+            <p><strong>Phone:</strong> {{PHONE}}</p>
+            <p><strong>Address:</strong> {{ADDRESS}}</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 {{COMPANY_NAME}}. All rights reserved.</p>
+    </footer>
+
+    
+</body>
+</html>
