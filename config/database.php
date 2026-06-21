@@ -1,7 +1,7 @@
 <?php
 
 // Load .env file
-$envFile = __DIR__ . '/.env';
+$envFile = dirname(__FILE__) . '/../.env';
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
@@ -13,10 +13,10 @@ if (file_exists($envFile)) {
     }
 }
 
-$host = getenv('DB_HOST') ?: 'localhost';
-$db   = getenv('DB_NAME') ?: 'brochomaker';
-$user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASS') ?: '';
+$host = getenv('DB_HOST') ?: 'sql306.infinityfree.com';
+$db   = getenv('DB_NAME') ?: 'if0_42225082_brochor_db';
+$user = getenv('DB_USER') ?: 'if0_42225082';
+$pass = getenv('DB_PASS') ?: 'Salim077';
 
 try {
     $pdo = new PDO(
