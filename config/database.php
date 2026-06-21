@@ -13,10 +13,10 @@ if (file_exists($envFile)) {
     }
 }
 
-$host = getenv('DB_HOST') ?: 'sql306.infinityfree.com';
-$db   = getenv('DB_NAME') ?: 'if0_42225082_brochor_db';
-$user = getenv('DB_USER') ?: 'if0_42225082';
-$pass = getenv('DB_PASS') ?: 'Salim077';
+$host = 'localhost';
+$db   = 'brochomaker';
+$user = 'root';
+$pass = '';
 
 try {
     $pdo = new PDO(

@@ -52,11 +52,11 @@ if (isset($_FILES['logo']) && $_FILES['logo']['error'] === 0) {
 }
 
 // 5. Save to database
-$sql  = "INSERT INTO submissions 
-        (full_name, company_name, tagline, email, phone, address, about, services, primary_color, secondary_color, model, logo_path)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO submissions 
+        (full_name, company_name, tagline, email, phone, address, about, services, primary_color, secondary_color, model, logo_path, service_1, service_2, service_3, why_choose_us, why_choose_us_1, why_choose_us_2, why_choose_us_3)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$fullName, $companyName, $tagline, $email, $phone, $address, $about, $services, $primaryColor, $secondaryColor, $model, $logoPath]);
+$stmt->execute([$fullName, $companyName, $tagline, $email, $phone, $address, $about, $services, $primaryColor, $secondaryColor, $model, $logoPath, $service1, $service2, $service3, $whyChooseUs, $whyChooseUs1, $whyChooseUs2, $whyChooseUs3]);
 
 // 6. Load and render template
 $template = file_get_contents('models/' . $model . '.html');
@@ -88,4 +88,31 @@ $output = str_replace(
     $template
 );
 
-echo $output;
+// Add download button before the brochure
+$downloadBtn = '
+<div style="text-align:center; padding: 20px; background:#f8f8f8; border-bottom: 2px solid #10B981;">
+    <button onclick="downloadPDF()" style="background:#10B981; color:white; padding:12px 30px; border:none; border-radius:6px; font-size:16px; cursor:pointer; margin-right:10px;">
+        💾 Save as PDF
+    </button>
+    <a href="test.html" style="background:#064E3B; color:white; padding:12px 30px; border-radius:6px; font-size:16px; text-decoration:none;">
+        ← Create Another
+    </a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+function downloadPDF() {
+    const element = document.querySelector(".brochure, .banner");
+    const opt = {
+        margin: 0,
+        filename: "brochure.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+';
+
+echo $downloadBtn . $output;
